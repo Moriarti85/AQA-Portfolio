@@ -1,19 +1,23 @@
 package pojo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class User {
     private Integer id;
     private String email;
-    private String first_name;
-    private String last_name;
+    @JsonProperty("first_name")
+    private String firstName;
+    @JsonProperty("last_name")
+    private String lastName;
     private String avatar;
 
     public User() {}
 
-    public User(Integer id, String email, String first_name, String last_name, String avatar) {
+    public User(Integer id, String email, String firstName, String lastName, String avatar) {
         this.id = id;
         this.email = email;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.avatar = avatar;
     }
 
@@ -25,12 +29,12 @@ public class User {
         return email;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
     public String getAvatar() {
