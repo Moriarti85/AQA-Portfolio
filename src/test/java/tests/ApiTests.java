@@ -1,9 +1,9 @@
 package tests;
 
-import io.restassured.http.ContentType;
 import pojo.User;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
+import utils.Specifications;
 
 import java.util.List;
 
@@ -15,14 +15,11 @@ public class ApiTests {
     @Test
     public void getUsersTest() {
         String endPoint = "api/users";
+        Specifications.setSpec(Specifications.requestSpecification(URL), Specifications.responseSpecification200Ok());
         List<User> users = given()
                 .when()
-                .header("x-api-key", "reqres-free-v1")
-                .contentType(ContentType.JSON)
                 .get(URL + endPoint)
-                .then()
-                .statusCode(200)
-                .log().all()
+                .then().log().all()
                 .extract().body().jsonPath().getList("data", User.class);
 
         SoftAssertions softly = new SoftAssertions();
