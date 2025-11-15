@@ -55,3 +55,8 @@ Git
 -- mvn clean test surefire-report:report
 
 Project Link: https://github.com/your-username/api-testing-project
+
+
+## Скриншоты
+### Прогон API тестов
+![img.png](ApiTestsRunResult.png)
