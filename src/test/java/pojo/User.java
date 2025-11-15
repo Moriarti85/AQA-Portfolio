@@ -10,15 +10,17 @@ public class User {
     @JsonProperty("last_name")
     private String lastName;
     private String avatar;
+    private String password;
 
     public User() {}
 
-    public User(Integer id, String email, String firstName, String lastName, String avatar) {
-        this.id = id;
+    public User(String email, String password) {
         this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.avatar = avatar;
+        this.password = password;
+    }
+
+    public User(String email) {
+        this.email = email;
     }
 
     public Integer getId() {
@@ -39,5 +41,9 @@ public class User {
 
     public String getAvatar() {
         return avatar;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

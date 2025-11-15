@@ -8,6 +8,16 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
 public class Specifications {
+    public static void setSpec(RequestSpecification requestSpecification, ResponseSpecification responseSpecification) {
+        RestAssured.requestSpecification = requestSpecification;
+        RestAssured.responseSpecification = responseSpecification;
+    }
+
+    public static void resetAllSpecs() {
+        RestAssured.requestSpecification = null;
+        RestAssured.responseSpecification = null;
+    }
+
     public static RequestSpecification requestSpecification(String url) {
         return new RequestSpecBuilder()
                 .setBaseUri(url)
@@ -16,14 +26,21 @@ public class Specifications {
                 .build();
     }
 
-    public static ResponseSpecification responseSpecification200Ok() {
+    public static ResponseSpecification responseSpecification200() {
         return new ResponseSpecBuilder()
                 .expectStatusCode(200)
                 .build();
     }
 
-    public static void setSpec(RequestSpecification requestSpecification, ResponseSpecification responseSpecification) {
-        RestAssured.requestSpecification = requestSpecification;
-        RestAssured.responseSpecification = responseSpecification;
+    public static ResponseSpecification responseSpecification400() {
+        return new ResponseSpecBuilder()
+                .expectStatusCode(400)
+                .build();
+    }
+
+    public static ResponseSpecification responseSpecification403() {
+        return new ResponseSpecBuilder()
+                .expectStatusCode(403)
+                .build();
     }
 }
