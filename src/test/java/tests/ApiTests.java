@@ -1,5 +1,6 @@
 package tests;
 
+import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 import pojo.SuccessRegisterData;
@@ -12,13 +13,14 @@ import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-public class ApiTests extends BaseTest {
+@Slf4j
+public class ApiTests extends APIBaseTest {
 
     @Test
     public void getUsersTest() {
         String endPoint = "api/users";
 
-        log.info(String.format("Отпарвляем запрос на %s и получаем ответ", URL + endPoint));
+        log.info("Отпарвляем запрос на {} и получаем ответ", URL + endPoint);
         List<User> users = given()
                 .when()
                 .get(URL + endPoint)

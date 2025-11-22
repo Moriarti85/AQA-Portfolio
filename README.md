@@ -60,3 +60,8 @@ Project Link: https://github.com/your-username/api-testing-project
 ## Скриншоты
 ### Прогон API тестов
 ![img.png](ApiTestsRunResult.png)
+
+### Прогон UI тестов
+![img.png](UITestsRunResult.png)
+### Струкура проекта
+![img.png](ProjectStructure.png)

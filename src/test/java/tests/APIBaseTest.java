@@ -1,15 +1,12 @@
 package tests;
 
-import groovy.util.logging.Slf4j;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import utils.Specifications;
 
 @Slf4j
-public class BaseTest {
+public class APIBaseTest {
     protected final static String URL = "https://reqres.in/";
-    protected static final Log log = LogFactory.getLog(BaseTest.class);
 
     @BeforeEach
     public void setUp() {
