@@ -45,8 +45,8 @@ Git
 
 #### Клонирование репозитория
 ```bash
--- git clone https://github.com/your-username/api-testing-project.git
--- cd api-testing-project
+git clone https://github.com/your-username/api-testing-project.git
+cd api-testing-project
 ```
 #### Запуск тестов
 ```bash
