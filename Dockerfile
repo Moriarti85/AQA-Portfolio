@@ -1,5 +1,5 @@
 # Используем официальный образ Maven с Java 17
-FROM maven:3.8.6-openjdk-17-slim AS builder
+FROM 3.9.11-amazoncorretto-11 AS builder
 
 # Устанавливаем рабочую директорию
 WORKDIR /app
