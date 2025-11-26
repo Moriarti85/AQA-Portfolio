@@ -1,0 +1,53 @@
+# Версия формата docker-compose файла
+# 3.8 - одна из последних стабильных версий
+version: '3.8'
+
+# Секция с определением всех сервисов (контейнеров)
+services:
+  # Сервис Selenium Hub - центральный узел для управления браузерами
+  selenium-hub:
+    # Используем официальный образ Selenium Hub
+    image: selenium/hub:4.11.0
+    # Имя контейнера для удобной идентификации
+    container_name: selenium-hub
+    # Проброс портов из контейнера на хост-машину
+    ports:
+      - "4444:4444"  # Основной порт для WebDriver команд
+      - "4442:4442"  # Порт для публикации событий
+      - "4443:4443"  # Порт для подписки на события
+
+  # Сервис Chrome браузера - нода для выполнения тестов
+  chrome:
+    # Официальный образ Chrome с Selenium
+    image: selenium/node-chrome:4.11.0
+    # Размер shared memory - важно для стабильной работы Chrome
+    shm_size: 2gb
+    # Зависимости: Chrome запустится только после Selenium Hub
+    depends_on:
+      - selenium-hub
+    # Переменные окружения для настройки ноды
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub  # Хост для подключения к хабу
+      - SE_EVENT_BUS_PUBLISH_PORT=4442  # Порт для отправки событий
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443 # Порт для получения событий
+      - SE_NODE_MAX_SESSIONS=2  # Максимум 2 параллельных сессии
+    # Монтирование shared memory для работы Chrome
+    volumes:
+      - /dev/shm:/dev/shm
+
+  # Сервис с вашими тестами
+  tests:
+    # Собирает образ из Dockerfile в текущей директории
+    build: .
+    # Имя контейнера с тестами
+    container_name: aqa-tests
+    # Зависимости: тесты запустятся после Selenium и Chrome
+    depends_on:
+      - selenium-hub
+      - chrome
+    # Переменные окружения для Selenide
+    environment:
+      # URL для подключения к Selenium Grid
+      - SELENIDE_REMOTE=http://selenium-hub:4444/wd/hub
+      # Браузер для тестов (chrome/firefox/etc)
+      - SELENIDE_BROWSER=chrome
