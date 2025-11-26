@@ -44,18 +44,26 @@ Git
 ### Установка и запуск
 
 #### Клонирование репозитория
+```bash
 -- git clone https://github.com/your-username/api-testing-project.git
-
 -- cd api-testing-project
-
+```
 #### Запуск тестов
--- mvn clean test
-
+```bash
+mvn clean test
+````
 #### Запуск с генерацией отчета
--- mvn clean test surefire-report:report
-
+```bash
+mvn clean test surefire-report:report
+```
 Project Link: https://github.com/your-username/api-testing-project
 
+### Запуск тестов в докере
+```bash
+git clone https://github.com/Moriarti85/AQA-Portfolio.git
+cd AQA-Portfolio
+docker-compose up --build
+```
 
 ## Скриншоты
 ### Прогон API тестов
