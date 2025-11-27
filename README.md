@@ -43,7 +43,7 @@ Git
 ## 💻 Локальный запуск тестов
 ### Клонирование репозитория
 ```bash
-git clone https://github.com/your-username/api-testing-project.git
+git clone https://github.com/Moriarti85/AQA-Portfolio.git
 cd api-testing-project
 ```
 ### Запуск тестов
