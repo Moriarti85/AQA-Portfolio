@@ -24,7 +24,8 @@ public class ApiTests extends APIBaseTest {
         List<User> users = given()
                 .when()
                 .get(URL + endPoint)
-                .then().log().all()
+                .then()
+                .log().all()
                 .extract().body().jsonPath().getList("data", User.class);
 
         log.info("Выполняем проверки");
