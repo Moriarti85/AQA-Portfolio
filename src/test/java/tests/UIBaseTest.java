@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Slf4j
 public class UIBaseTest {
@@ -31,6 +33,7 @@ public class UIBaseTest {
             Configuration.pageLoadTimeout = 30000;
         }
 
+        Logger.getLogger("org.openqa.selenium").setLevel(Level.SEVERE);
         Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";
         Configuration.screenshots = true;
