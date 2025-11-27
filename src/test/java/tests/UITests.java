@@ -1,16 +1,12 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import enums.LinksColors;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeOptions;
 import pages.WikipediaPage;
 
 import java.time.Duration;
-import java.util.Map;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -48,25 +44,17 @@ public class UITests extends UIBaseTest {
 
     @Test
     void adaptivityTest() {
-        reopenWikiFromIPhone("iPhone 14 Pro Max");
+        reopenWikiFromIPhone("iPhone");
         var expectedFontFamily = "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Inter, Helvetica, Arial, sans-serif";
         $(".minerva-header").shouldHave(cssValue("font-family", expectedFontFamily));
     }
 
-    private void reopenWikiFromIPhone(String mobileModel) {
-        var mobileEmulation = Map.of("deviceName", mobileModel);
-        var chromeOptions = new ChromeOptions();
-        chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
-        Configuration.browserCapabilities = chromeOptions;
-
-        Selenide.closeWindow();
-        Selenide.open("https://ru.wikipedia.org");
-
+    private void reopenWikiFromIPhone(String mobileBrand) {
+        reopenWikiPageFromIPhone(mobileBrand);
         var mainMenu = $("#main-menu-input");
         assertThat(mainMenu.exists()).as("Нет элемента с id=main-menu-input. Возможно не применились настройки браузера").isTrue();
         mainMenu.shouldBe(hidden).shouldHave(attribute("role", "button"));
         $("[for='main-menu-input']").shouldHave(attribute("aria-hidden", "true"));
-        log.info("Эмуляция открытия wiki на {} успешно выполнена", mobileModel);
     }
 
     private String getExpectedMainPageUrl() {

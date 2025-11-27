@@ -19,14 +19,18 @@ public class UIBaseTest {
 
         if (isRunningInDocker) {
             Configuration.remote = "http://selenium-hub:4444/wd/hub";
+
             Configuration.remoteConnectionTimeout = 120000;
             Configuration.remoteReadTimeout = 120000;
             Configuration.timeout = 120000;
             Configuration.pageLoadTimeout = 120000;
-            Configuration.browserCapabilities = new ChromeOptions();
-            Configuration.browserCapabilities.setCapability("se:cdp", false);
-            Configuration.browserCapabilities.setCapability("se:cdpVersion", false);
-            Configuration.browserCapabilities.setCapability("se:vnc", false);
+
+            ChromeOptions options = new ChromeOptions();
+            options.setCapability("se:cdp", false);
+            options.setCapability("se:cdpVersion", false);
+            options.setCapability("se:vnc", false);
+            options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation", "enable-logging"});
+            Configuration.browserCapabilities = options;
         } else {
             Configuration.remote = null;
             Configuration.timeout = 10000;
@@ -34,6 +38,7 @@ public class UIBaseTest {
         }
 
         Logger.getLogger("org.openqa.selenium").setLevel(Level.SEVERE);
+
         Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";
         Configuration.screenshots = true;
@@ -56,5 +61,17 @@ public class UIBaseTest {
         String timestamp = LocalDateTime.now()
                 .format(java.time.format.DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
         Selenide.screenshot(String.format( "%s_%s",name, timestamp));
+    }
+
+    protected void reopenWikiPageFromIPhone(String mobileBrand) {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1");
+
+        Configuration.browserCapabilities = options;
+        Configuration.browserSize = "414x896";
+
+        Selenide.closeWebDriver();
+        Selenide.open("https://ru.wikipedia.org/");
+        log.info("Открыта мобильная версия с User-Agent: {}", mobileBrand);
     }
 }
