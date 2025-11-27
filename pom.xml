@@ -21,6 +21,8 @@
         <commons-lang3.version>3.14.0</commons-lang3.version>
         <woodstox.version>6.5.1</woodstox.version>
         <maven-surefire.version>3.1.2</maven-surefire.version>
+        <selenide.version>7.11.1</selenide.version>
+        <lombok.version>1.18.40</lombok.version>
     </properties>
 
     <dependencyManagement>
@@ -105,14 +107,14 @@
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
-            <version>7.11.1</version>
+            <version>${selenide.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.40</version>
+            <version>${lombok.version}</version>
         </dependency>
 
         <dependency>
