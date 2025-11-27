@@ -13,9 +13,26 @@ import java.time.LocalDateTime;
 public class UIBaseTest {
     @BeforeEach
     public void setUp() {
-        // Конфигурация Selenide
-        Configuration.timeout = 10000;
-        Configuration.pageLoadTimeout = 30000;
+        var isRunningInDocker = System.getenv("SELENIDE_REMOTE") != null;
+
+        if (isRunningInDocker) {
+            Configuration.remote = "http://selenium-hub:4444/wd/hub";
+            Configuration.remoteConnectionTimeout = 120000;
+            Configuration.remoteReadTimeout = 120000;
+            Configuration.timeout = 120000;
+            Configuration.pageLoadTimeout = 120000;
+            Configuration.browserCapabilities = new ChromeOptions();
+            Configuration.browserCapabilities.setCapability("se:cdp", false);
+            Configuration.browserCapabilities.setCapability("se:cdpVersion", false);
+            Configuration.browserCapabilities.setCapability("se:vnc", false);
+        } else {
+            Configuration.remote = null;
+            Configuration.timeout = 10000;
+            Configuration.pageLoadTimeout = 30000;
+        }
+
+        Configuration.browser = "chrome";
+        Configuration.browserSize = "1920x1080";
         Configuration.screenshots = true;
         Configuration.savePageSource = false;
 
