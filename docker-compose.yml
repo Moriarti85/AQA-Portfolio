@@ -1,19 +1,39 @@
 services:
   selenium-hub:
-    image: selenium/hub:4.11.0
+    image: selenium/hub:4.16.0
     container_name: selenium-hub
     ports:
       - "4444:4444"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4444/status"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 40s
 
   chrome:
-    image: selenium/node-chrome:4.11.0
+    image: selenium/node-chrome:4.16.0
     shm_size: 2gb
     depends_on:
-      - selenium-hub
+      selenium-hub:
+        condition: service_healthy
     environment:
       - SE_EVENT_BUS_HOST=selenium-hub
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - SE_NODE_MAX_SESSIONS=2
+      - SE_NODE_OVERRIDE_MAX_SESSIONS=true
     volumes:
       - /dev/shm:/dev/shm
+
+  aqa-tests:
+    image: aqa-portfolio:latest
+    container_name: aqa-tests
+    depends_on:
+      selenium-hub:
+        condition: service_healthy
+      chrome:
+        condition: service_started
+    environment:
+      - SELENIDE_REMOTE=http://selenium-hub:4444/wd/hub
+      - SELENIDE_BROWSER=chrome
