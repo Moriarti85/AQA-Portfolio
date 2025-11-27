@@ -15,4 +15,4 @@ COPY src ./src
 RUN mvn clean compile test-compile
 
 # Устанавливаем команду для запуска тестов
-CMD ["mvn", "test", "-Dselenide.remote=http://selenium-hub:4444/wd/hub", "-Dselenide.browser=chrome"]
+CMD ["mvn", "test"]
