@@ -21,7 +21,8 @@
         <commons-lang3.version>3.14.0</commons-lang3.version>
         <woodstox.version>6.5.1</woodstox.version>
         <maven-surefire.version>3.1.2</maven-surefire.version>
-        <selenide.version>7.11.1</selenide.version>
+        <selenide.version>6.17.0</selenide.version>
+        <selenium.version>4.11.0</selenium.version>
         <lombok.version>1.18.40</lombok.version>
     </properties>
 
@@ -103,11 +104,15 @@
             </exclusions>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.codeborne/selenide -->
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
             <version>${selenide.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->

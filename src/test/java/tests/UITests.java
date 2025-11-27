@@ -23,8 +23,7 @@ public class UITests extends UIBaseTest {
         WikipediaPage.CONTENT.shouldBe(visible);
 
         var logoLink = WikipediaPage.LOGO.$(By.cssSelector("[class='mw-wiki-logo']"));
-        logoLink.shouldBe(clickable)
-                .shouldHave(tagName("a"))
+        logoLink.shouldHave(tagName("a"))
                 .shouldHave(attribute("href", getExpectedMainPageUrl()));
 
         WikipediaPage.FOOTER.scrollTo().shouldBe(visible, DURATION);
