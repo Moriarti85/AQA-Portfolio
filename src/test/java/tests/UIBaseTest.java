@@ -94,10 +94,12 @@ public class UIBaseTest {
         log.info("Перезапуск браузера с мобильным User-Agent: {}", mobileBrand);
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--headless=new");
+        options.addArguments(
+                "--user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1",
+                "--no-sandbox",
+                "--disable-dev-shm-usage",
+                "--headless=new"
+        );
 
         Configuration.browserCapabilities = options;
         Configuration.browserSize = "414x896";

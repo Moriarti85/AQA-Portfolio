@@ -44,8 +44,16 @@ public class UITests extends UIBaseTest {
     @Test
     void adaptivityTest() {
         reopenWikiPageFromIPhone("iPhone");
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
         var expectedFontFamily = "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Inter, Helvetica, Arial, sans-serif";
         $(".minerva-header").shouldHave(cssValue("font-family", expectedFontFamily));
+
         var mainMenu = $("#main-menu-input");
         assertThat(mainMenu.exists()).as("Нет элемента с id=main-menu-input. Возможно не применились настройки браузера").isTrue();
         mainMenu.shouldBe(hidden).shouldHave(attribute("role", "button"));
