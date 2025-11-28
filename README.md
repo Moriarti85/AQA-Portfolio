@@ -31,7 +31,7 @@
 
 **UI тесты** - тестирование веб-интерфейса с Selenide
 
-**Интеграция с CI/CD** - Docker, GitHub Actions
+**Интеграция с CI/CD** - Docker
 
 ## 🚀 Быстрый старт
 ### Предварительные требования
@@ -43,16 +43,16 @@ Git
 ## 💻 Локальный запуск тестов
 ### Клонирование репозитория
 ```bash
-git clone https://github.com/Moriarti85/AQA-Portfolio.git
-cd api-testing-project
+   git clone https://github.com/Moriarti85/AQA-Portfolio.git
+   cd api-testing-project
 ```
 ### Запуск тестов
 ```bash
-mvn clean test
+   mvn clean test
 ````
 ### Запуск с генерацией отчета
 ```bash
-mvn clean test surefire-report:report
+   mvn clean test surefire-report:report
 ```
 ## 🐳 Запуск тестов в Docker
 ### Предварительные требования
@@ -63,11 +63,11 @@ mvn clean test surefire-report:report
 ### Быстрый запуск
 ```bash
 # Клонировать репозиторий
-git clone https://github.com/Moriarti85/AQA-Portfolio.git
-cd AQA-Portfolio
+   git clone https://github.com/Moriarti85/AQA-Portfolio.git
+   cd AQA-Portfolio
 
 # Запустить все тесты (API + UI)
-docker-compose up --build
+   docker-compose up --build
 ```
 Project Link: https://github.com/Moriarti85/AQA-Portfolio
 ## Скриншоты
