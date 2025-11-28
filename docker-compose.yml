@@ -38,3 +38,5 @@ services:
     environment:
       - SELENIDE_REMOTE=http://selenium-hub:4444/wd/hub
       - SELENIDE_BROWSER=chrome
+    volumes:
+      - ./test-results:/app/target
