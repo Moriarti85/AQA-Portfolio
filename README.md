@@ -44,7 +44,7 @@ Git
 ### Клонирование репозитория
 ```bash
    git clone https://github.com/Moriarti85/AQA-Portfolio.git
-   cd api-testing-project
+   cd AQA-Portfolio
 ```
 ### Запуск тестов
 ```bash

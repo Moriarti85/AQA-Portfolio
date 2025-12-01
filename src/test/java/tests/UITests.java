@@ -45,11 +45,8 @@ public class UITests extends UIBaseTest {
     void adaptivityTest() {
         reopenWikiPageFromIPhone("iPhone");
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+        // Ждем появления мобильного меню (максимум 3 секунды)
+        $(".minerva-header").should(appear, Duration.ofSeconds(3));
 
         var expectedFontFamily = "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Inter, Helvetica, Arial, sans-serif";
         $(".minerva-header").shouldHave(cssValue("font-family", expectedFontFamily));
