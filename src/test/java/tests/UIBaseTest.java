@@ -37,11 +37,11 @@ public class UIBaseTest {
     private void setupCommonConfiguration() {
         Configuration.browser = TestConfig.getProperty("browser.name", "chrome");
         Configuration.browserSize = TestConfig.getProperty("browser.size", "1920x1080");
-        Configuration.screenshots = TestConfig.getBooleanProperty("screenshots", true);
-        Configuration.savePageSource = TestConfig.getBooleanProperty("savePageSource", false);
+        Configuration.screenshots = TestConfig.getProperty("screenshots", true);
+        Configuration.savePageSource = TestConfig.getProperty("savePageSource", false);
         Configuration.reportsFolder = TestConfig.getProperty("reportsFolder", "target/screenshots");
-        Configuration.timeout = TestConfig.getLongProperty("timeout", 10000);
-        Configuration.pageLoadTimeout = TestConfig.getLongProperty("pageLoadTimeout", 30000);
+        Configuration.timeout = TestConfig.getProperty("timeout", 10000);
+        Configuration.pageLoadTimeout = TestConfig.getProperty("pageLoadTimeout", 30000);
 
         Logger.getLogger("org.openqa.selenium").setLevel(Level.SEVERE);
         Logger.getLogger("com.codeborne.selenide").setLevel(Level.WARNING);
@@ -52,8 +52,8 @@ public class UIBaseTest {
 
         Configuration.remote = TestConfig.getProperty("docker.remote.url", "http://selenium-hub:4444/wd/hub");
 
-        Configuration.remoteConnectionTimeout = TestConfig.getLongProperty("remoteConnectionTimeout", 60000);
-        Configuration.remoteReadTimeout = TestConfig.getLongProperty("remoteReadTimeout", 60000);
+        Configuration.remoteConnectionTimeout = TestConfig.getProperty("remoteConnectionTimeout", 60000);
+        Configuration.remoteReadTimeout = TestConfig.getProperty("remoteReadTimeout", 60000);
 
         var options = new ChromeOptions();
         options.addArguments("--no-sandbox");
