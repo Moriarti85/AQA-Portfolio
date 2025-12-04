@@ -1,12 +1,13 @@
 package config;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import java.util.logging.Logger;
 
+@Slf4j
 public class TestConfig {
-    private static final Logger log = Logger.getLogger(TestConfig.class.getName());
     private static final Properties properties = new Properties();
 
     static {
@@ -19,7 +20,7 @@ public class TestConfig {
                 properties.load(input);
             }
         } catch (IOException e) {
-            log.warning("Error loading config.properties: " + e.getMessage());
+            log.warn("Ошибка при загрузке config.properties: {}", e.getMessage());
         }
     }
 
@@ -28,18 +29,18 @@ public class TestConfig {
         return value != null ? value : defaultValue;
     }
 
-    public static boolean getBooleanProperty(String key, boolean defaultValue) {
+    public static boolean getProperty(String key, boolean defaultValue) {
         String value = properties.getProperty(key);
         return value != null ? Boolean.parseBoolean(value) : defaultValue;
     }
 
-    public static long getLongProperty(String key, long defaultValue) {
+    public static long getProperty(String key, long defaultValue) {
         String value = properties.getProperty(key);
         if (value != null) {
             try {
                 return Long.parseLong(value);
             } catch (NumberFormatException e) {
-                log.warning("Invalid number format for property " + key + ": " + value);
+                log.warn("Недопустимый числовой формат для свойства {}: {}", key, value);
             }
         }
         return defaultValue;
