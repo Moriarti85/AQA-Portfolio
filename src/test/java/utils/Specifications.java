@@ -22,7 +22,7 @@ public class Specifications {
         return new RequestSpecBuilder()
                 .setBaseUri(url)
                 .setContentType(ContentType.JSON)
-                .addHeader("x-api-key", "reqres-free-v1")
+                .addHeader("x-api-key", "reqres_f8d426d919f24dc4ba154eb100da58c7")
                 .build();
     }
 
